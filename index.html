@@ -2,7 +2,7 @@
 <html lang='en'>
   <head>
     <!--MODIFY title that appears in web browser tab -->
-    <title>GreatBy8 Search and Filter Map</title>
+    <title>Connecticut Educational Redlining Map (CAPT Version)</title>
     <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content='' name='description' />
@@ -25,12 +25,12 @@
             <span class="icon-bar"></span>
           </button>
           <!--MODIFY title of web page, and link destination if desired-->
-          <a class='navbar-brand' href='index.html'>GreatBy8 Search and Filter Map</a>
+          <a class='navbar-brand' href='index.html'>Connecticut Educational Redlining Map (CAPT Version)</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <!--MODIFY link and text to point to your own site if desired-->
-            <li class='active'><a href="http://greatby8.com" target="_blank">Back to GreatBy8.com</a></li>
+            <li class='active'><a href="http://commons.trincoll.edu/dataviz" target="_blank">Back to Trinity DataViz Site</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -39,7 +39,7 @@
       <div class='row'>
         <div class='col-md-4'>
         <!--MODIFY or erase any descriptive text or links below between the paragraph <p> tags -->
-          <p>Search for early childhood programs and resources.</p>
+          <p>Search for schools who administer the CAPT test in Connecticut by typing in an address or zipcode.</p>
           <div class='well'>
             <h4>
               Address <small>(<a id='find_me' href='#'>find me</a>)</small>
@@ -62,47 +62,56 @@
             
             <!--MODIFY Point layer legend heading, labels (such as Interdistrict), and colors (green, blue, yellow, red, purple) to match your data -->
             <h4>
-              Type of Programs
+              CAPT School Category
             </h4>
             <ul class='inputs-list unstyled'>
               <li>
                 <label class='checkbox inline'>
                   <input type='checkbox' id='cbType1' />
-                  <img src='images/red-dot.png'></span>
-                  Early Childhood  <!--This label can be modified from actual data entry ("Interdistrict") -->
+                  <span class='filter-box filter-green'></span>
+                  Excelling  <!--This label can be modified from actual data entry ("Interdistrict") -->
                 </label>
               </li>
               <li>
                 <label class='checkbox inline'>
                   <input type='checkbox' id='cbType2' />
-                  <img src='images/green-dot.png'></span>
-                  Schools
+                  <span class='filter-box filter-blue'></span>
+                  Progressing
                 </label>
               </li>
               <li>
                 <label class='checkbox inline'>
                   <input type='checkbox' id='cbType3' />
-                  <img src='images/purple-dot.png'></span>
-                  Home Care
+                  <span class='filter-box filter-yellow'></span>
+                  Transitioning
                 </label>
               </li>
               <li>
                 <label class='checkbox inline'>
                   <input type='checkbox' id='cbType4' />
-                  <img src='images/yellow-dot.png'></span>
-                  Recreation
+                  <span class='filter-box filter-purple'></span>
+                  Review
                 </label>
               </li>
               <li>
                 <label class='checkbox inline'>
                   <input type='checkbox' id='cbType5' />
-                  <img src='images/blue-dot.png'></span>
-                  Health
+                  <span class='filter-box filter-red'></span>
+                  Focus
+                </label>
+              </li>
+            </ul>
+            </li>
+              <li>
+                <label class='checkbox inline'>
+                  <input type='checkbox' id='cbType5' />
+                  <img src='images/red-dot.png'></span>
+                  Turnaround
                 </label>
               </li>
             </ul>
             <!--MODIFY Polygon layers legend heading, labels (such as Polygon layer 1) to match your data, and related variables in maps_lib.js file -->
-            <h4>Demographic layers</h4>
+            <h4>School District layers</h4>
             	<ul class='inputs-list unstyled'>
               	<ol id='polygon-legend'>
 			<li id='legend-left'></li>
@@ -114,19 +123,13 @@
               <li>
                 <label class='radio inline'>
                   <input type='radio' name='types' id='rbPolygon1' checked />
-                  Children Ages 0-9
+                  Percent Minority
                 </label>
               </li>
               <li>
                 <label class='radio inline'>
                   <input type='radio' name='types' id='rbPolygon2' />
-                  Median Household Income
-                </label>
-              </li>
-              <li>
-                <label class='radio inline'>
-                  <input type='radio' name='types' id='rbPolygon3' />
-                  Adults with B.A. or above
+                  Number of Students
                 </label>
               </li>
               <li>
