@@ -26,11 +26,10 @@ var MapsLib = {
 
   //MODIFY the encrypted Table IDs of your Fusion Tables (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1xojtVquxKvt8j3vxhdDC4imeTp1yqd79Vu-HYo7D", //Point data layer
+  fusionTableId:      "1Xrddd9JGnZhvnGBDHfXpNvKiQv5m19r0TrA7CTi9", //Point data layer
   
   polygon1TableID:    "1WbIxDRp5EJ8H-o2ZoA3iJe-7MKPPNZT62ECfFbf_", //Outline map layer of CT town boundaries
   polygon2TableID:    "1lUY-LGZIBEVAdT82J6pKCsYj4Q6KNZQUpNG6QP6w", //Thematic map layer of selected CT school districts
-  polygon3TableID:    "10GpaVFxTtIGP2WT9qEPJOJpxyWtrmLqA-hGOqKWx",
   
   //*MODIFY Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -40,9 +39,9 @@ var MapsLib = {
   //NOTE: if your location column name has spaces in it, surround it with single quotes
   //example: locationColumn:     "'my location'",
   //if your Fusion Table has two-column lat/lng data, see https://support.google.com/fusiontables/answer/175922
-  locationColumn:     "Lat",
+  locationColumn:     "Address",
 
-  map_centroid:       new google.maps.LatLng(41.760039, -72.739881), //center that your map defaults to
+  map_centroid:       new google.maps.LatLng(41.5178234,-72.757507), //center that your map defaults to
   locationScope:      "connecticut",      //geographical area appended to all address searches
   recordName:         "result",       //for showing number of results
   recordNamePlural:   "results",
@@ -83,7 +82,7 @@ var MapsLib = {
     MapsLib.searchrecords = null;
 
     //MODIFY to initial values of the pre-checked polygon?
-    MapsLib.setDemographicsLabels("150&ndash;350", "350&ndash;650", "650&ndash;825");
+    MapsLib.setDemographicsLabels("0%&ndash;35%", "35%&ndash;70%", "70%&ndash;100%");
 
     // MODIFY if needed: defines background polygon1 and polygon2 layers
     MapsLib.polygon1 = new google.maps.FusionTablesLayer({
@@ -98,15 +97,6 @@ var MapsLib = {
     MapsLib.polygon2 = new google.maps.FusionTablesLayer({
       query: {
         from:   MapsLib.polygon2TableID,
-        select: "geometry"
-      },
-      styleId: 2,
-      templateId: 2
-    });
-    
-    MapsLib.polygon3 = new google.maps.FusionTablesLayer({
-      query: {
-        from:   MapsLib.polygon3TableID,
         select: "geometry"
       },
       styleId: 2,
@@ -136,15 +126,11 @@ var MapsLib = {
     // MODIFY if needed: shows background polygon layer depending on which checkbox is selected
     if ($("#rbPolygon1").is(':checked')) {
       MapsLib.polygon1.setMap(map);
-      MapsLib.setDemographicsLabels("150&ndash;350", "350&ndash;650", "650&ndash;825"); //MODIFY
+      MapsLib.setDemographicsLabels("10%&ndash;35%", "35%&ndash;70%", "70%&ndash;100%"); //MODIFY
     }
     if ($("#rbPolygon2").is(':checked')) {
       MapsLib.polygon2.setMap(map);
-      MapsLib.setDemographicsLabels("20&ndash;40%", "40&ndash;60%", "60&ndash;80%"); //MODIFY
-    }
-    if ($("#rbPolygon3").is(':checked')) {
-      MapsLib.polygon3.setMap(map);
-      MapsLib.setDemographicsLabels("50k&ndash;65k", "65k&ndash;80k%", "80k&ndash;140k"); //MODIFY
+      MapsLib.setDemographicsLabels("0&ndash;770", "770&ndash;1540", "1540&ndash;2300"); //MODIFY
     }
     if ($("#rbPolygonOff").is(':checked')) {   //the Off statement does not contain a setMap
       MapsLib.setDemographicsLabels("&ndash;", "&ndash;", "&ndash;");
@@ -168,13 +154,14 @@ var MapsLib = {
     whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join("','") + "')";*/
 
     //-- NUMERICAL OPTION - to display and filter a column of numerical data in your table, use this instead
-    var type_column = "'Number'";
+    var type_column = "'CAPT Category #'";
     var searchType = type_column + " IN (-1,";
-    if ( $("#cbType1").is(':checked')) searchType += "1,";
-    if ( $("#cbType2").is(':checked')) searchType += "2,";
-    if ( $("#cbType3").is(':checked')) searchType += "3,";
-    if ( $("#cbType4").is(':checked')) searchType += "4,";
-    if ( $("#cbType5").is(':checked')) searchType += "5,";
+    if ( $("#cbType1").is(':checked')) searchType += "0,";
+    if ( $("#cbType2").is(':checked')) searchType += "1,";
+    if ( $("#cbType3").is(':checked')) searchType += "2,";
+    if ( $("#cbType4").is(':checked')) searchType += "3,";
+    if ( $("#cbType5").is(':checked')) searchType += "4,";
+    if ( $("#cbType6").is(':checked')) searchType += "5,";
     whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
     //-------end of custom filters--------
 
@@ -240,8 +227,6 @@ var MapsLib = {
       MapsLib.polygon1.setMap(null);
     if (MapsLib.polygon2 != null)
       MapsLib.polygon2.setMap(null);
-    if (MapsLib.polygon3 != null)
-      MapsLib.polygon3.setMap(null);
     if (MapsLib.polygonOFF !=null)
       MapsLib.polygonOff.setMap(null);
     if (MapsLib.addrMarker != null)
