@@ -26,11 +26,11 @@ var MapsLib = {
 
   //MODIFY the encrypted Table IDs of your Fusion Tables (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1A4Xz1sTfXqA8jk3aOTxvIy3sf4-uEBurCp4JI95i", //Point data layer
+  fusionTableId:      "1Xrddd9JGnZhvnGBDHfXpNvKiQv5m19r0TrA7CTi9", //CAPT Point data layer
   
-  polygon1TableID:    "1pHSiILxVHirfmJdtW_KPCzkMQK9m8CLXAnC-Z7ek", //Racial Minority
-  polygon2TableID:    "1Ie1qRMx5YutKX3zfbtHwUo4-Cg617MVbKb-LpQ32", //Number of Students
-  polygon3TableID:    "1bIC4f_uIF6H_TwoPKi_yEWSDSQVlvmgqX7DzLFVQ", //Students with Disabilities
+  polygon1TableID:    "1WGfQzG5bAU97xGEeGGV4s9Mb65oaKUeb-YhGaqtp", //Racial Minority
+  polygon2TableID:    "1aN-ycx94ZgJzv0WYyjrXyMMRzQMvqOOD_0d8WkXW", //Number of Students
+  polygon3TableID:    "1PAB3k_ABy0GGLEAKhzxNxWvODx-GumVJCOAIwLK8", //Students with Disabilities
   
   //*MODIFY Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -144,7 +144,7 @@ var MapsLib = {
     }
     if ($("#rbPolygon3").is(':checked')) {
       MapsLib.polygon3.setMap(map);
-      MapsLib.setDemographicsLabels("0%&ndash;9%", "9%&ndash;12%", "12%&ndash;15%"); //MODIFY to match 3 buckets in GFT
+      MapsLib.setDemographicsLabels("0%&ndash;7%", "7%&ndash;14%", "14%&ndash;21%"); //MODIFY to match 3 buckets in GFT
     }
     if ($("#rbPolygonOff").is(':checked')) {   //the Off statement does not contain a setMap
       MapsLib.setDemographicsLabels("&ndash;", "&ndash;", "&ndash;");
